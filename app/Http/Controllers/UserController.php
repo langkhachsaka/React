@@ -36,7 +36,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        
+
     }
 
     /**
@@ -58,7 +58,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view("edit", compact('id'));
     }
 
     /**

@@ -11,7 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::resource('users','UserController');
+Route::any('{path}', function()
+{
+    return view('users');
+})->where('path','.*');
+
+// Route::get('/{path?}', function () {
+//     return view('users');
+// });
+// Route::resource('users','UserController');

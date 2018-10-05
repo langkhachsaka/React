@@ -14,5 +14,7 @@ require('./bootstrap');
  */
 
 //require('./components/Example');
-require('./components/User');
-require('./components/Create');
+// require('./components/User');
+// require('./components/Create');
+// require('./components/Edit');
+require('./components/App');

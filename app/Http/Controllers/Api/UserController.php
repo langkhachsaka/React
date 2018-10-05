@@ -15,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users=User::all();
+        $users=User::orderBy("id","ASC")->paginate(6);
 
         return response()->json($users);
     }
@@ -38,6 +38,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+
         $user = new User();
 
         $user->name =$request->name;
@@ -57,7 +58,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+
+        return response()-> json($user);
     }
 
     /**
@@ -80,8 +83,16 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+
+        User::where('id', $request->id)
+          ->update([
+              'name' => $request->name,
+              'email' => $request->email,
+              'password' => bcrypt($request->password)
+          ]);
+
+          return response()-> json();
+     }
 
     /**
      * Remove the specified resource from storage.
@@ -91,6 +102,10 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+
+        return response()-> json('Delete Successfully');
+
     }
 }
